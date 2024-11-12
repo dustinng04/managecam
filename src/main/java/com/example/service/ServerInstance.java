@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.service.response.CameraResponse;
+import com.example.dto.response.DeviceResponse;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
@@ -19,7 +19,7 @@ public class ServerInstance {
     private NetSDKLib.LLong cameraHandle = new NetSDKLib.LLong(0);
     private NetSDKLib.LLong realLoadHandle = new NetSDKLib.LLong(0);
     private boolean bConnect = false;
-    private CameraResponse serverInfo;
+    private DeviceResponse serverInfo;
 
 
     public boolean isConnect(){

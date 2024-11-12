@@ -1,9 +1,9 @@
-package com.example.service;
+package com.example.dto.response;
 
 import lombok.Data;
 
 @Data
-public class CameraInfoDto {
+public class DeviceInfoDto {
     String ip;
     Integer port;
     Integer channelId;

@@ -1,7 +1,8 @@
 package com.example.controller;
 
-import com.example.SDKInitService;
-import com.example.service.CameraInfoDto;
+import com.example.dto.response.DeviceInfoDto;
+import com.example.dto.response.DeviceRule;
+import com.example.service.DeviceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 public class CameraController {
 
-    private final SDKInitService sdkInit;
+    private final DeviceService deviceService;
 
 //    @GetMapping("server/login")
 //    public String login() {
@@ -22,8 +23,15 @@ public class CameraController {
 
     @GetMapping("/camera/all")
     public String getAllDevices() {
-        HashMap<String, CameraInfoDto> cameraInfoDtoList = sdkInit.getListCameraCCTV();
-        System.out.println("Finding camera list: " + cameraInfoDtoList);
-        return "ok";
+        HashMap<String, DeviceInfoDto> cameraInfoDtoList = deviceService.getListCameraCCTV();
+        return cameraInfoDtoList.toString();
     }
+
+    @GetMapping("/camera/config")
+    public String getCameraConfig() {
+        DeviceRule deviceRule = deviceService.getDeviceConfig();
+        System.out.println("Finding config of camera:" + deviceRule);
+        return "find config ok";
+    }
+
 }

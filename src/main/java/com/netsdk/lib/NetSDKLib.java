@@ -384,13 +384,13 @@ public interface NetSDKLib extends Library {
     public static final int EVENT_IVS_WEIGHING_PLATFORM_DETECTION =	0x00000269;		// 称重平台检测事件(对应 DEV_EVENT_WEIGHING_PLATFORM_DETECTION_INFO)
     public static final int EVENT_IVS_CLASSROOM_BEHAVIOR		= 0x0000026A;		// 课堂行为分析事件(对应 DEV_EVENT_CLASSROOM_BEHAVIOR_INFO)
     public static final int EVENT_IVS_VEHICLE_DISTANCE_NEAR		= 0x0000026B;		// 安全驾驶车距过近报警事件(对应 DEV_EVENT_VEHICLE_DISTANCE_NEAR_INFO)
+	// 交通道路施工检测事件(对应 DEV_EVENT_TRAFFIC_ROAD_CONSTRUCTION_INFO)
 
     public static final int EVENT_IVS_TRAFFIC_DRIVER_ABNORMAL      = 0x0000026C;	// 驾驶员异常报警事件(对应 DEV_EVENT_TRAFFIC_DRIVER_ABNORMAL_INFO)
     public static final int	EVENT_IVS_WORKCLOTHES_DETECT		= 0x0000026E;		// 工装(安全帽/工作服等)检测事件(对应 DEV_EVENT_WORKCLOTHES_DETECT_INFO)
     public static final int EVENT_IVS_SECURITYGATE_PERSONALARM  = 0x0000026F;       // 安检门人员报警事件(对应 DEV_EVENT_SECURITYGATE_PERSONALARM_INFO)
     public static final int EVENT_IVS_STAY_ALONE_DETECTION      = 0x00000270;		// 单人独处事件(对应 DEV_EVENT_STAY_ALONE_DETECTION_INFO)
-    public static final int EVENT_IVS_TRAFFIC_ROAD_CONSTRUCTION = 0x00000272;		// 交通道路施工检测事件(对应 DEV_EVENT_TRAFFIC_ROAD_CONSTRUCTION_INFO)
-
+    public static final int EVENT_IVS_TRAFFIC_ROAD_CONSTRUCTION = 0x00000272;
     public static final int EVENT_IVS_WORKSTATDETECTION         = 0x00000274;       // 作业统计事件(对应 DEV_EVENT_WORKSTATDETECTION_INFO)
     public static final int EVENT_IVS_INTELLI_SHELF             = 0x00000277;       // 智能补货事件(对应 DEV_EVENT_INTELLI_SHELF_INFO)
     public static final int EVENT_IVS_CAR_DRIVING_IN_OUT		= 0x0000027B;       // 车辆驶入驶出状态事件(对应 DEV_EVENT_CAR_DRIVING_IN_OUT_INFO)
@@ -4130,400 +4130,399 @@ public interface NetSDKLib extends Library {
     }
 
     // 报警联动信息
-    public static class CFG_ALARM_MSG_HANDLE extends SdkStructure
-    {
+    public static class CFG_ALARM_MSG_HANDLE extends SdkStructure {
         /**
-         能力
+         * 能力
          */
-        public			byte					abRecordMask;
+        public byte abRecordMask;
 
-        public			byte					abRecordEnable;
+        public byte abRecordEnable;
 
-        public			byte					abRecordLatch;
+        public byte abRecordLatch;
 
-        public			byte					abAlarmOutMask;
+        public byte abAlarmOutMask;
 
-        public			byte					abAlarmOutEn;
+        public byte abAlarmOutEn;
 
-        public			byte					abAlarmOutLatch;
+        public byte abAlarmOutLatch;
 
-        public			byte					abExAlarmOutMask;
+        public byte abExAlarmOutMask;
 
-        public			byte					abExAlarmOutEn;
+        public byte abExAlarmOutEn;
 
-        public			byte					abPtzLinkEn;
+        public byte abPtzLinkEn;
 
-        public			byte					abTourMask;
+        public byte abTourMask;
 
-        public			byte					abTourEnable;
+        public byte abTourEnable;
 
-        public			byte					abSnapshot;
+        public byte abSnapshot;
 
-        public			byte					abSnapshotEn;
+        public byte abSnapshotEn;
 
-        public			byte					abSnapshotPeriod;
+        public byte abSnapshotPeriod;
 
-        public			byte					abSnapshotTimes;
+        public byte abSnapshotTimes;
 
-        public			byte					abTipEnable;
+        public byte abTipEnable;
 
-        public			byte					abMailEnable;
+        public byte abMailEnable;
 
-        public			byte					abMessageEnable;
+        public byte abMessageEnable;
 
-        public			byte					abBeepEnable;
+        public byte abBeepEnable;
 
-        public			byte					abVoiceEnable;
+        public byte abVoiceEnable;
 
-        public			byte					abMatrixMask;
+        public byte abMatrixMask;
 
-        public			byte					abMatrixEnable;
+        public byte abMatrixEnable;
 
-        public			byte					abEventLatch;
+        public byte abEventLatch;
 
-        public			byte					abLogEnable;
+        public byte abLogEnable;
 
-        public			byte					abDelay;
+        public byte abDelay;
 
-        public			byte					abVideoMessageEn;
+        public byte abVideoMessageEn;
 
-        public			byte					abMMSEnable;
+        public byte abMMSEnable;
 
-        public			byte					abMessageToNetEn;
+        public byte abMessageToNetEn;
 
-        public			byte					abTourSplit;
+        public byte abTourSplit;
 
-        public			byte					abSnapshotTitleEn;
+        public byte abSnapshotTitleEn;
 
-        public			byte					abChannelCount;
+        public byte abChannelCount;
 
-        public			byte					abAlarmOutCount;
+        public byte abAlarmOutCount;
 
-        public			byte					abPtzLinkEx;
+        public byte abPtzLinkEx;
 
-        public			byte					abSnapshotTitle;
+        public byte abSnapshotTitle;
 
-        public			byte					abMailDetail;
+        public byte abMailDetail;
 
-        public			byte					abVideoTitleEn;
+        public byte abVideoTitleEn;
 
-        public			byte					abVideoTitle;
+        public byte abVideoTitle;
 
-        public			byte					abTour;
+        public byte abTour;
 
-        public			byte					abDBKeys;
+        public byte abDBKeys;
 
-        public			byte					abJpegSummary;
+        public byte abJpegSummary;
 
-        public			byte					abFlashEn;
+        public byte abFlashEn;
 
-        public			byte					abFlashLatch;
+        public byte abFlashLatch;
         /**
-         补齐
+         * 补齐
          */
-        public			byte[]					byReserved1=new byte[2];
+        public byte[] byReserved1 = new byte[2];
         /**
-         设备的视频通道数
+         * 设备的视频通道数
          */
-        public			int					nChannelCount;
+        public int nChannelCount;
         /**
-         设备的报警输出个数
+         * 设备的报警输出个数
          */
-        public			int					nAlarmOutCount;
+        public int nAlarmOutCount;
         /**
-         录像通道掩码(按位)
+         * 录像通道掩码(按位)
          */
-        public			int[]					dwRecordMask=new int[16];
+        public int[] dwRecordMask = new int[16];
         /**
-         录像使能
+         * 录像使能
          */
-        public			int					bRecordEnable;
+        public int bRecordEnable;
         /**
-         录像延时时间(秒)
+         * 录像延时时间(秒)
          */
-        public			int					nRecordLatch;
+        public int nRecordLatch;
         /**
-         报警输出通道掩码
+         * 报警输出通道掩码
          */
-        public			int[]					dwAlarmOutMask=new int[16];
+        public int[] dwAlarmOutMask = new int[16];
         /**
-         报警输出使能
+         * 报警输出使能
          */
-        public			int					bAlarmOutEn;
+        public int bAlarmOutEn;
         /**
-         报警输出延时时间(秒)
+         * 报警输出延时时间(秒)
          */
-        public			int					nAlarmOutLatch;
+        public int nAlarmOutLatch;
         /**
-         扩展报警输出通道掩码
+         * 扩展报警输出通道掩码
          */
-        public			int[]					dwExAlarmOutMask=new int[16];
+        public int[] dwExAlarmOutMask = new int[16];
         /**
-         扩展报警输出使能
+         * 扩展报警输出使能
          */
-        public			int					bExAlarmOutEn;
+        public int bExAlarmOutEn;
         /**
-         云台联动项
+         * 云台联动项
          */
-        public			CFG_PTZ_LINK[]					stuPtzLink=new CFG_PTZ_LINK[256];
+        public CFG_PTZ_LINK[] stuPtzLink = new CFG_PTZ_LINK[256];
         /**
-         云台联动使能
+         * 云台联动使能
          */
-        public			int					bPtzLinkEn;
+        public int bPtzLinkEn;
         /**
-         轮询通道掩码
+         * 轮询通道掩码
          */
-        public			int[]					dwTourMask=new int[16];
+        public int[] dwTourMask = new int[16];
         /**
-         轮询使能
+         * 轮询使能
          */
-        public			int					bTourEnable;
+        public int bTourEnable;
         /**
-         快照通道号掩码
+         * 快照通道号掩码
          */
-        public			int[]					dwSnapshot=new int[16];
+        public int[] dwSnapshot = new int[16];
         /**
-         快照使能
+         * 快照使能
          */
-        public			int					bSnapshotEn;
+        public int bSnapshotEn;
         /**
-         连拍周期(秒)
+         * 连拍周期(秒)
          */
-        public			int					nSnapshotPeriod;
+        public int nSnapshotPeriod;
         /**
-         连拍次数
+         * 连拍次数
          */
-        public			int					nSnapshotTimes;
+        public int nSnapshotTimes;
         /**
-         本地消息框提示
+         * 本地消息框提示
          */
-        public			int					bTipEnable;
+        public int bTipEnable;
         /**
-         发送邮件，如果有图片，作为附件
+         * 发送邮件，如果有图片，作为附件
          */
-        public			int					bMailEnable;
+        public int bMailEnable;
         /**
-         上传到报警服务器
+         * 上传到报警服务器
          */
-        public			int					bMessageEnable;
+        public int bMessageEnable;
         /**
-         蜂鸣
+         * 蜂鸣
          */
-        public			int					bBeepEnable;
+        public int bBeepEnable;
         /**
-         语音提示
+         * 语音提示
          */
-        public			int					bVoiceEnable;
+        public int bVoiceEnable;
         /**
-         联动视频矩阵通道掩码
+         * 联动视频矩阵通道掩码
          */
-        public			int[]					dwMatrixMask=new int[16];
+        public int[] dwMatrixMask = new int[16];
         /**
-         联动视频矩阵
+         * 联动视频矩阵
          */
-        public			int					bMatrixEnable;
+        public int bMatrixEnable;
         /**
-         联动开始延时时间(秒)，0－15
+         * 联动开始延时时间(秒)，0－15
          */
-        public			int					nEventLatch;
+        public int nEventLatch;
         /**
-         是否记录日志
+         * 是否记录日志
          */
-        public			int					bLogEnable;
+        public int bLogEnable;
         /**
-         设置时先延时再生效，单位为秒
+         * 设置时先延时再生效，单位为秒
          */
-        public			int					nDelay;
+        public int nDelay;
         /**
-         叠加提示字幕到视频。叠加的字幕包括事件类型，通道号，秒计时。
+         * 叠加提示字幕到视频。叠加的字幕包括事件类型，通道号，秒计时。
          */
-        public			int					bVideoMessageEn;
+        public int bVideoMessageEn;
         /**
-         发送彩信使能
+         * 发送彩信使能
          */
-        public			int					bMMSEnable;
+        public int bMMSEnable;
         /**
-         消息上传给网络使能
+         * 消息上传给网络使能
          */
-        public			int					bMessageToNetEn;
+        public int bMessageToNetEn;
         /**
-         轮巡时的分割模式 0: 1画面; 1: 8画面
+         * 轮巡时的分割模式 0: 1画面; 1: 8画面
          */
-        public			int					nTourSplit;
+        public int nTourSplit;
         /**
-         是否叠加图片标题
+         * 是否叠加图片标题
          */
-        public			int					bSnapshotTitleEn;
+        public int bSnapshotTitleEn;
         /**
-         云台配置数
+         * 云台配置数
          */
-        public			int					nPtzLinkExNum;
+        public int nPtzLinkExNum;
         /**
-         扩展云台信息
+         * 扩展云台信息
          */
-        public			CFG_PTZ_LINK_EX[]					stuPtzLinkEx=new CFG_PTZ_LINK_EX[256];
+        public CFG_PTZ_LINK_EX[] stuPtzLinkEx = new CFG_PTZ_LINK_EX[256];
         /**
-         图片标题内容数
+         * 图片标题内容数
          */
-        public			int					nSnapTitleNum;
+        public int nSnapTitleNum;
         /**
-         图片标题内容
+         * 图片标题内容
          */
-        public			CFG_EVENT_TITLE[]					stuSnapshotTitle=new CFG_EVENT_TITLE[256];
+        public CFG_EVENT_TITLE[] stuSnapshotTitle = new CFG_EVENT_TITLE[256];
         /**
-         邮件详细内容
+         * 邮件详细内容
          */
-        public			CFG_MAIL_DETAIL					stuMailDetail=new CFG_MAIL_DETAIL();
+        public CFG_MAIL_DETAIL stuMailDetail = new CFG_MAIL_DETAIL();
         /**
-         是否叠加视频标题，主要指主码流
+         * 是否叠加视频标题，主要指主码流
          */
-        public			int					bVideoTitleEn;
+        public int bVideoTitleEn;
         /**
-         视频标题内容数目
+         * 视频标题内容数目
          */
-        public			int					nVideoTitleNum;
+        public int nVideoTitleNum;
         /**
-         视频标题内容
+         * 视频标题内容
          */
-        public			CFG_EVENT_TITLE[]					stuVideoTitle=new CFG_EVENT_TITLE[256];
+        public CFG_EVENT_TITLE[] stuVideoTitle = new CFG_EVENT_TITLE[256];
         /**
-         轮询联动数目
+         * 轮询联动数目
          */
-        public			int					nTourNum;
+        public int nTourNum;
         /**
-         轮询联动配置
+         * 轮询联动配置
          */
-        public			CFG_TOURLINK[]					stuTour=new CFG_TOURLINK[256];
+        public CFG_TOURLINK[] stuTour = new CFG_TOURLINK[256];
         /**
-         指定数据库关键字的有效数
+         * 指定数据库关键字的有效数
          */
-        public			int					nDBKeysNum;
+        public int nDBKeysNum;
         /**
-         指定事件详细信息里需要写到数据库的关键字
+         * 指定事件详细信息里需要写到数据库的关键字
          */
-        public			byte[]					szDBKeys=new byte[64*64];
+        public byte[] szDBKeys = new byte[64 * 64];
         /**
-         叠加到JPEG图片的摘要信息
+         * 叠加到JPEG图片的摘要信息
          */
-        public			byte[]					byJpegSummary=new byte[1024];
+        public byte[] byJpegSummary = new byte[1024];
         /**
-         是否使能补光灯
+         * 是否使能补光灯
          */
-        public			int					bFlashEnable;
+        public int bFlashEnable;
         /**
-         补光灯延时时间(秒),延时时间范围：[10,300]
+         * 补光灯延时时间(秒),延时时间范围：[10,300]
          */
-        public			int					nFlashLatch;
+        public int nFlashLatch;
 
-        public			byte					abAudioFileName;
+        public byte abAudioFileName;
 
-        public			byte					abAlarmBellEn;
+        public byte abAlarmBellEn;
 
-        public			byte					abAccessControlEn;
+        public byte abAccessControlEn;
 
-        public			byte					abAccessControl;
+        public byte abAccessControl;
         /**
-         联动语音文件绝对路径
+         * 联动语音文件绝对路径
          */
-        public			byte[]					szAudioFileName=new byte[MAX_PATH];
+        public byte[] szAudioFileName = new byte[MAX_PATH];
         /**
-         警号使能
+         * 警号使能
          */
-        public			int					bAlarmBellEn;
+        public int bAlarmBellEn;
         /**
-         门禁使能
+         * 门禁使能
          */
-        public			int					bAccessControlEn;
+        public int bAccessControlEn;
         /**
-         门禁组数
+         * 门禁组数
          */
-        public			int					dwAccessControl;
+        public int dwAccessControl;
         /**
-         门禁联动操作信息
+         * 门禁联动操作信息
          */
-        public			int[]					emAccessControlType=new int[8];
+        public int[] emAccessControlType = new int[8];
 
-        public			byte					abTalkBack;
+        public byte abTalkBack;
         /**
-         补齐
+         * 补齐
          */
-        public			byte[]					byReserved2=new byte[3];
+        public byte[] byReserved2 = new byte[3];
         /**
-         语音呼叫联动信息
+         * 语音呼叫联动信息
          */
-        public			CFG_TALKBACK_INFO					stuTalkback=new CFG_TALKBACK_INFO();
+        public CFG_TALKBACK_INFO stuTalkback = new CFG_TALKBACK_INFO();
 
-        public			byte					abPSTNAlarmServer;
+        public byte abPSTNAlarmServer;
         /**
-         补齐
+         * 补齐
          */
-        public			byte[]					byReserved3=new byte[3];
+        public byte[] byReserved3 = new byte[3];
         /**
-         电话报警中心联动信息
+         * 电话报警中心联动信息
          */
-        public			CFG_PSTN_ALARM_SERVER					stuPSTNAlarmServer=new CFG_PSTN_ALARM_SERVER();
+        public CFG_PSTN_ALARM_SERVER stuPSTNAlarmServer = new CFG_PSTN_ALARM_SERVER();
         /**
-         事件响应时间表
+         * 事件响应时间表
          */
-        public			CFG_TIME_SCHEDULE					stuTimeSection=new CFG_TIME_SCHEDULE();
+        public CFG_TIME_SCHEDULE stuTimeSection = new CFG_TIME_SCHEDULE();
 
-        public			byte					abAlarmBellLatch;
+        public byte abAlarmBellLatch;
         /**
-         补齐
+         * 补齐
          */
-        public			byte[]					byReserved4=new byte[3];
+        public byte[] byReserved4 = new byte[3];
         /**
-         警号输出延时时间(10-300秒)
+         * 警号输出延时时间(10-300秒)
          */
-        public			int					nAlarmBellLatch;
+        public int nAlarmBellLatch;
 
-        public			byte					abAudioPlayTimes;
+        public byte abAudioPlayTimes;
 
-        public			byte					abAudioLinkTime;
+        public byte abAudioLinkTime;
         /**
-         补齐
+         * 补齐
          */
-        public			byte[]					byReserved5=new byte[2];
+        public byte[] byReserved5 = new byte[2];
         /**
-         联动语音播放次数
+         * 联动语音播放次数
          */
-        public			int					nAudioPlayTimes;
+        public int nAudioPlayTimes;
         /**
-         联动语音播放的时间, 单位：秒
+         * 联动语音播放的时间, 单位：秒
          */
-        public			int					nAudioLinkTime;
+        public int nAudioLinkTime;
         /**
-         nAlarmOutTime 是否有效
+         * nAlarmOutTime 是否有效
          */
-        public			byte					abAlarmOutTime;
+        public byte abAlarmOutTime;
         /**
-         报警输出持续时间,单位秒, 如果无此字段，按设备原来的方式实现
+         * 报警输出持续时间,单位秒, 如果无此字段，按设备原来的方式实现
          */
-        public			int					nAlarmOutTime;
+        public int nAlarmOutTime;
         /**
-         nBeepTime 是否有效
+         * nBeepTime 是否有效
          */
-        public			byte					abBeepTime;
+        public byte abBeepTime;
         /**
-         蜂鸣时长，单位秒，最大值为3600，0代表持续蜂鸣
+         * 蜂鸣时长，单位秒，最大值为3600，0代表持续蜂鸣
          */
-        public			int					nBeepTime;
+        public int nBeepTime;
 
-        public			CFG_ALARM_MSG_HANDLE(){
-            for(int i=0;i<stuPtzLink.length;i++){
-                stuPtzLink[i]=new CFG_PTZ_LINK();
+        public CFG_ALARM_MSG_HANDLE() {
+            for (int i = 0; i < stuPtzLink.length; i++) {
+                stuPtzLink[i] = new CFG_PTZ_LINK();
             }
-            for(int i=0;i<stuPtzLinkEx.length;i++){
-                stuPtzLinkEx[i]=new CFG_PTZ_LINK_EX();
+            for (int i = 0; i < stuPtzLinkEx.length; i++) {
+                stuPtzLinkEx[i] = new CFG_PTZ_LINK_EX();
             }
-            for(int i=0;i<stuSnapshotTitle.length;i++){
-                stuSnapshotTitle[i]=new CFG_EVENT_TITLE();
+            for (int i = 0; i < stuSnapshotTitle.length; i++) {
+                stuSnapshotTitle[i] = new CFG_EVENT_TITLE();
             }
-            for(int i=0;i<stuVideoTitle.length;i++){
-                stuVideoTitle[i]=new CFG_EVENT_TITLE();
+            for (int i = 0; i < stuVideoTitle.length; i++) {
+                stuVideoTitle[i] = new CFG_EVENT_TITLE();
             }
-            for(int i=0;i<stuTour.length;i++){
-                stuTour[i]=new CFG_TOURLINK();
+            for (int i = 0; i < stuTour.length; i++) {
+                stuTour[i] = new CFG_TOURLINK();
             }
         }
     }
@@ -4779,7 +4778,7 @@ public interface NetSDKLib extends Library {
 
     // 陌生人布防模式
     public static class CFG_STRANGERMODE_INFO extends SdkStructure
-    {
+    {   
         public int 					    bEnable;									// 模式是否启用,bool类型 取值0或1
         public byte[]					szColorHex = new byte[MAX_COLOR_HEX_LEN];	// 事件触发时绘制人脸框的颜色
         public int 					    bShowTitle;									// 事件触发时规则框上是否显示报警标题,bool类型 取值0或1
@@ -25559,7 +25558,7 @@ public interface NetSDKLib extends Library {
 
     // 获取配置
     // error 为设备返回的错误码： 0-成功 1-失败 2-数据不合法 3-暂时无法设置 4-没有权限
-    public boolean CLIENT_GetNewDevConfig(LLong lLoginID, String szCommand, int nChannelID, byte[] szOutBuffer, int dwOutBufferSize, IntByReference error, int waiitime,Pointer pReserved);
+    public boolean CLIENT_GetNewDevConfig(LLong lLoginID, String szCommand, int nChannelID, byte[] szOutBuffer, int dwOutBufferSize, IntByReference error, int waiitime);
 
     // 设置配置
     public boolean CLIENT_SetNewDevConfig(LLong lLoginID, String szCommand, int nChannelID, byte[] szInBuffer, int dwInBufferSize, IntByReference error, IntByReference restart, int waittime);

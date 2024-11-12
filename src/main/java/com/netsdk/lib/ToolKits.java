@@ -349,27 +349,24 @@ public class ToolKits {
 	}
 
 	public static boolean GetDevConfig(LLong hLoginHandle, int nChn, String strCmd, Structure cmdObject) {
-		boolean result = false;
 		IntByReference error = new IntByReference(0);
+		IntByReference retLen = new IntByReference(0);
+
 		int nBufferLen = 2*1024*1024;
 	    byte[] strBuffer = new byte[nBufferLen];
-	   
-	    if(netsdkapi.CLIENT_GetNewDevConfig( hLoginHandle, strCmd , nChn, strBuffer, nBufferLen,error,3000,null)) {  
-	    	cmdObject.write();
-			if (configapi.CLIENT_ParseData(strCmd, strBuffer, cmdObject.getPointer(),
-					cmdObject.size(), null)) {
-				cmdObject.read();
-	     		result = true;
-	     	} else {
-	     		System.err.println("Parse " + strCmd + " Config Failed!");
-	     		result = false;
-		 	}
-	    } else {
-			 System.err.printf("Get %s Config Failed!Last Error = %s\n" , strCmd);
-			 result = false;
+
+		// if (!netsdkapi.CLIENT_GetNewDevConfig(hLoginHandle, strCmd, nChn, strBuffer, nBufferLen, error, 5000)) {
+		if (!netsdkapi.CLIENT_GetNewDevConfig(hLoginHandle, strCmd, nChn, strBuffer, nBufferLen, error, 5000)) {
+			System.err.printf("Get %s Config Failed!Last Error = %x\n", strCmd, netsdkapi.CLIENT_GetLastError());
+			return false;
 		}
-			
-	    return result;
+		cmdObject.write();
+		if (!configapi.CLIENT_ParseData(strCmd, strBuffer, cmdObject.getPointer(), cmdObject.size(), retLen.getPointer())) {
+			System.err.println("Parse " + strCmd + " Config Failed!" + ToolKits.getErrorCode());
+			return false;
+		}
+		cmdObject.read();
+		return true;
 	}
 	
 	/**
@@ -395,7 +392,7 @@ public class ToolKits {
         	if( netsdkapi.CLIENT_SetNewDevConfig(hLoginHandle, strCmd , nChn , szBuffer, nBufferLen, error, restart, 3000)) {
         		result = true;
         	} else {
-        		 System.err.printf("Set %s Config Failed! Last Error = %s\n" , strCmd);
+        		 System.err.printf("Set %s Config Failed! Last Error = %s\n" , strCmd, getErrorCode());
 	        	 result = false;
         	}
         } else {

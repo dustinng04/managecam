@@ -1,24 +1,19 @@
 package com.example;
 
-import com.example.service.CameraInfoDto;
 import com.example.service.ServerInstance;
-import com.example.service.response.CameraResponse;
+import com.example.dto.response.DeviceResponse;
 import com.netsdk.lib.NetSDKLib;
 import com.netsdk.lib.NetSDKLib.LLong;
 import com.netsdk.lib.NetSDKLib.fDisConnect;
 import com.netsdk.lib.NetSDKLib.fHaveReConnect;
 import com.netsdk.lib.ToolKits;
-import com.sun.jna.Memory;
 import com.sun.jna.Pointer;
-import com.sun.jna.ptr.IntByReference;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -86,7 +81,7 @@ public class SDKInitService {
             serverInstance.setLoginHandle(loginHandle);
             serverInstance.setBConnect(true);
             serverInstance.setDeviceInfo(pstOutParam.stuDeviceInfo);
-            CameraResponse device = new CameraResponse();
+            DeviceResponse device = new DeviceResponse();
             device.setCameraType("IVSS");
             device.setIp(deviceIp);
             device.setPort(devicePort);
@@ -95,43 +90,6 @@ public class SDKInitService {
         } else{
             System.err.printf("CLIENT_LoginWithHighLevelSecurity Failed!LastError = %s\n", ToolKits.getErrorCode());
         }
-    }
-
-    public HashMap<String, CameraInfoDto> getListCameraCCTV() {
-        HashMap<String, CameraInfoDto> cameraInfoDtoList = new HashMap<>();
-        if(!serverInstance.isConnect()){
-            return cameraInfoDtoList;
-        }
-        int cameraCount = serverInstance.getDeviceInfo().byChanNum;
-        NetSDKLib.NET_MATRIX_CAMERA_INFO[]  cameraInfo = new NetSDKLib.NET_MATRIX_CAMERA_INFO[cameraCount];
-        for(int i = 0; i < cameraCount; i++) {
-            cameraInfo[i] = new NetSDKLib.NET_MATRIX_CAMERA_INFO();
-        }
-
-        NetSDKLib.NET_IN_MATRIX_GET_CAMERAS inMatrix = new NetSDKLib.NET_IN_MATRIX_GET_CAMERAS();
-
-        NetSDKLib.NET_OUT_MATRIX_GET_CAMERAS outMatrix = new NetSDKLib.NET_OUT_MATRIX_GET_CAMERAS();
-        outMatrix.nMaxCameraCount = cameraCount;
-        outMatrix.pstuCameras = new Memory((long) cameraInfo[0].size() * cameraCount);
-        outMatrix.pstuCameras.clear((long) cameraInfo[0].size() * cameraCount);
-
-        ToolKits.SetStructArrToPointerData(cameraInfo, outMatrix.pstuCameras);
-
-        if(serverInstance.getNetSdk().CLIENT_MatrixGetCameras(serverInstance.getLoginHandle(), inMatrix, outMatrix, 3000)) {
-            ToolKits.GetPointerDataToStructArr(outMatrix.pstuCameras, cameraInfo);
-            for(int j = 0; j < outMatrix.nRetCameraCount; j++) {
-                if(new String(cameraInfo[j].stuRemoteDevice.szIp).trim().isEmpty() || cameraInfo[j].bRemoteDevice == 0 || cameraInfo[j].stuRemoteDevice.szIp.toString().isEmpty()) {   // 过滤远程设备
-                    continue;
-                }
-                CameraInfoDto cameraInfoDto = new CameraInfoDto();
-                cameraInfoDto.setChannelId(cameraInfo[j].nUniqueChannel);
-                cameraInfoDto.setIp( new String(cameraInfo[j].stuRemoteDevice.szIp).trim());
-                cameraInfoDto.setPort( cameraInfo[j].stuRemoteDevice.nPort);
-
-                cameraInfoDtoList.put(cameraInfoDto.getIp(),cameraInfoDto);
-            }
-        }
-        return cameraInfoDtoList;
     }
 
 
